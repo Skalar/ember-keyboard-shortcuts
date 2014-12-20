@@ -1,6 +1,6 @@
 {
   "name": "ember-keyboard-shortcuts",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -10,11 +10,14 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Skalar/ember-keyboard-shortcuts"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Skalar",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^1.0.0",
@@ -33,7 +36,8 @@
   },
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "mousetrap"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
