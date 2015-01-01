@@ -27,7 +27,7 @@ export default function(bindEvent, unbindEvent) {
             });
           }
           else if (type === 'function') {
-            Mousetrap[binder](shortcut, action);
+            Mousetrap[binder](shortcut, action.bind(self));
           }
           else {
             throw new Error('Invalid value for keyboard shortcut: ' + action);
