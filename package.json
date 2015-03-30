@@ -10,6 +10,10 @@
     "build": "ember build",
     "test": "ember test"
   },
+  "contributors": [{
+    "name": "Devin Weaver",
+    "email": "suki@tritarget.org"
+  }],
   "repository": {
     "type": "git",
     "url": "https://github.com/Skalar/ember-keyboard-shortcuts"
