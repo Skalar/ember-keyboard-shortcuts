@@ -34,7 +34,7 @@
     "express": "^4.8.5",
     "glob": "^4.0.5"
   },
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Defines a keyboard shortcuts hash that lets you easily create keyboard shortcuts.",
   "keywords": [
     "ember-addon",
     "mousetrap"
