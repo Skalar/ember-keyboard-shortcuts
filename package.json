@@ -35,7 +35,7 @@
     "ember-disable-prototype-extensions": "^1.0.0",
     "ember-try": "0.0.4"
   },
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Defines a keyboard shortcuts hash that lets you easily create keyboard shortcuts.",
   "keywords": [
     "ember-addon",
     "mousetrap"
