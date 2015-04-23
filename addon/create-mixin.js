@@ -12,22 +12,24 @@ export default function(bindEvent, unbindEvent) {
 
       if (Ember.typeOf(shortcuts) !== 'object') { return; }
 
+      this.mousetraps = [];
+
       Object.keys(shortcuts).forEach(function(shortcut) {
         var actionObject   = shortcuts[shortcut];
-        var binder         = 'bindGlobal';
+        var mousetrap      = new Mousetrap(document.body);
         var preventDefault = true;
 
         function invokeAction(action) {
           var type = Ember.typeOf(action);
 
           if (type === 'string') {
-            Mousetrap[binder](shortcut, function(){
+            mousetrap.bind(shortcut, function(){
               self.send(action);
               return preventDefault !== true;
             });
           }
           else if (type === 'function') {
-            Mousetrap[binder](shortcut, action.bind(self));
+            mousetrap.bind(shortcut, action.bind(self));
           }
           else {
             throw new Error('Invalid value for keyboard shortcut: ' + action);
@@ -35,7 +37,11 @@ export default function(bindEvent, unbindEvent) {
         }
 
         if (Ember.typeOf(actionObject) === 'object') {
-          if (actionObject.global === false) { binder = 'bind'; }
+          if (actionObject.global === false) {
+            mousetrap = new Mousetrap(document);
+          } else if (actionObject.targetElement) {
+            mousetrap = new Mousetrap(actionObject.targetElement);
+          }
 
           if (actionObject.preventDefault === false) {
             preventDefault = false;
@@ -47,16 +53,16 @@ export default function(bindEvent, unbindEvent) {
           invokeAction(actionObject);
         }
 
+        self.mousetraps.push(mousetrap);
+
       });
 
     }.on(bindEvent),
 
     unbindShortcuts: function() {
-      var shortcuts = this.get('keyboardShortcuts');
-
-      Object.keys(shortcuts).forEach(
-        function(shortcut) {
-          Mousetrap.unbind(shortcut);
+      this.mousetraps.forEach(
+        function (mousetrap) {
+          mousetrap.reset();
         }
       );
     }.on(unbindEvent)
