@@ -1,6 +1,6 @@
 {
   "name": "ember-keyboard-shortcuts",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -10,10 +10,12 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "contributors": [{
-    "name": "Devin Weaver",
-    "email": "suki@tritarget.org"
-  }],
+  "contributors": [
+    {
+      "name": "Devin Weaver",
+      "email": "suki@tritarget.org"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Skalar/ember-keyboard-shortcuts"
