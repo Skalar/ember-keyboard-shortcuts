@@ -1,15 +1,16 @@
 # ember-keyboard-shortcuts
 
-## Usage
-
-### Install
+## Installation
 
 In your ember-cli project:
+
 ```bash
 ember install ember-keyboard-shortcuts
 ```
 
-### Use in a route
+## Usage
+
+### In a route
 
 ```javascript
 import KeyboardShortcuts from 'ember-keyboard-shortcuts/mixins/route';
@@ -29,8 +30,8 @@ export default Ember.Route.extend(
       'esc' : 'cancel',
 
       'ctrl+c' : {
-        action         : 'cancel' // action to trigger
-        global         : false    // whether to trigger inside input (default: true)  
+        action         : 'cancel', // action to trigger
+        global         : false,    // whether to trigger inside input (default: true)  
         preventDefault : true     // (default: true)
       }
 
@@ -44,9 +45,28 @@ export default Ember.Route.extend(
 );
 ```
 
-### Use in a view
+### In a component
 ```javascript
-import KeyboardShortcuts from 'ember-keyboard-shortcuts/mixins/route';
+import Ember from 'ember';
+import KeyboardShortcuts from 'ember-keyboard-shortcuts/mixins/component';
+
+export default Ember.Component.extend(
+  KeyboardShortcuts,
+
+  {
+    keyboardShortcuts: {
+      'esc'    : 'cancel',
+      'ctrl+s' : 'save'
+    }
+  }
+);
+```
+
+
+### In a view
+```javascript
+import Ember from 'ember';
+import KeyboardShortcuts from 'ember-keyboard-shortcuts/mixins/view';
 
 export default Ember.View.extend(
   KeyboardShortcuts,
