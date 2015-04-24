@@ -5,13 +5,7 @@ module.exports = {
   name: 'ember-keyboard-shortcuts',
 
   included: function(app, parentAddon) {
-    var target = (parentAddon || app);
-
+    let target = (parentAddon || app);
     target.import(app.bowerDirectory + '/mousetrap/mousetrap.js');
-
-    target.import(
-      app.bowerDirectory +
-      '/mousetrap/plugins/global-bind/mousetrap-global-bind.js'
-    );
   }
 };
