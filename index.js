@@ -7,10 +7,5 @@ module.exports = {
   included: function(app, parentAddon) {
     let target = (parentAddon || app);
     target.import(app.bowerDirectory + '/mousetrap/mousetrap.js');
-
-    target.import(
-      app.bowerDirectory +
-      '/mousetrap/plugins/global-bind/mousetrap-global-bind.js'
-    );
   }
 };
