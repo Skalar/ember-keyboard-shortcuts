@@ -6,8 +6,7 @@
 
 In your ember-cli project:
 ```bash
-npm install Skalar/ember-keyboard-shortcuts --save-dev
-ember generate ember-keyboard-shortcuts
+ember install ember-keyboard-shortcuts
 ```
 
 ### Use in a route
