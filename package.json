@@ -41,7 +41,7 @@
     "ember-disable-prototype-extensions": "^1.0.0",
     "ember-try": "0.0.4"
   },
-  "description": "Defines a keyboard shortcuts hash that lets you easily create keyboard shortcuts.",
+  "description": "ember-cli addon that uses mousetrap to facilitate keyboard shortcuts",
   "keywords": [
     "ember-addon",
     "mousetrap"
