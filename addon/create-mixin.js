@@ -7,20 +7,20 @@ export default function(bindEvent, unbindEvent) {
   return Ember.Mixin.create({
 
     bindShortcuts: function() {
-      let self = this;
-      let shortcuts = this.get('keyboardShortcuts');
+      var self = this;
+      var shortcuts = this.get('keyboardShortcuts');
 
       if (Ember.typeOf(shortcuts) !== 'object') { return; }
 
       this.mousetraps = [];
 
       Object.keys(shortcuts).forEach(function(shortcut) {
-        let actionObject   = shortcuts[shortcut];
-        let mousetrap      = new Mousetrap(document.body);
-        let preventDefault = true;
+        var actionObject   = shortcuts[shortcut];
+        var mousetrap      = new Mousetrap(document.body);
+        var preventDefault = true;
 
         function invokeAction(action) {
-          let type = Ember.typeOf(action);
+          var type = Ember.typeOf(action);
 
           if (type === 'string') {
             mousetrap.bind(shortcut, function(){
