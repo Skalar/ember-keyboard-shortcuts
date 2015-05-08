@@ -39,6 +39,8 @@ export default function(bindEvent, unbindEvent) {
         if (Ember.typeOf(actionObject) === 'object') {
           if (actionObject.global === false) {
             mousetrap = new Mousetrap(document);
+          } else if (actionObject.scoped) {
+            mousetrap = new Mousetrap(self.get('element'));
           } else if (actionObject.targetElement) {
             mousetrap = new Mousetrap(actionObject.targetElement);
           }
