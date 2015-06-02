@@ -6,7 +6,7 @@ export default function(bindEvent, unbindEvent) {
 
   return Ember.Mixin.create({
 
-    bindShortcuts: function() {
+    bindShortcuts: Ember.on(bindEvent, function() {
       var self = this;
       var shortcuts = this.get('keyboardShortcuts');
 
@@ -58,13 +58,13 @@ export default function(bindEvent, unbindEvent) {
 
       });
 
-    }.on(bindEvent),
+    }),
 
-    unbindShortcuts: function() {
+    unbindShortcuts: Ember.on(unbindEvent, function() {
       this.mousetraps.forEach(
         (mousetrap) => mousetrap.reset()
       );
-    }.on(unbindEvent)
+    })
 
   });
 
