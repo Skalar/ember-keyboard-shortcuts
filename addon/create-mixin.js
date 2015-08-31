@@ -26,7 +26,7 @@ export default function(bindEvent, unbindEvent) {
             mousetrap.bind(shortcut, function(){
               self.send(action);
               return preventDefault !== true;
-            });
+            }, eventType);
           }
           else if (type === 'function') {
             mousetrap.bind(shortcut, action.bind(self), eventType);
