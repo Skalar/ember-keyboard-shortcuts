@@ -19,7 +19,7 @@ export default function(bindEvent, unbindEvent) {
         var mousetrap      = new Mousetrap(document.body);
         var preventDefault = true;
 
-        function invokeAction(action) {
+        function invokeAction(action, eventType) {
           var type = Ember.typeOf(action);
 
           if (type === 'string') {
@@ -29,7 +29,7 @@ export default function(bindEvent, unbindEvent) {
             });
           }
           else if (type === 'function') {
-            mousetrap.bind(shortcut, action.bind(self));
+            mousetrap.bind(shortcut, action.bind(self), eventType);
           }
           else {
             throw new Error('Invalid value for keyboard shortcut: ' + action);
@@ -49,7 +49,7 @@ export default function(bindEvent, unbindEvent) {
             preventDefault = false;
           }
 
-          invokeAction(actionObject.action);
+          invokeAction(actionObject.action, actionObject.eventType);
         } else {
           invokeAction(actionObject);
         }
