@@ -4,6 +4,6 @@ module.exports = {
   normalizeEntityName: function() {},
 
   afterInstall: function() {
-    return this.addBowerPackageToProject('mousetrap', '~1.5.2');
+    return this.addBowerPackageToProject('mousetrap', '~1.5.3');
   }
 };
