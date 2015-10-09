@@ -40,7 +40,11 @@ export default function(bindEvent, unbindEvent) {
           if (actionObject.global === false) {
             mousetrap = new Mousetrap(document);
           } else if (actionObject.scoped) {
-            mousetrap = new Mousetrap(self.get('element'));
+            if (Ember.typeOf(actionObject.scoped) === 'boolean') {
+              mousetrap = new Mousetrap(self.get('element'));
+            } else if (Ember.typeOf(actionObject.scoped) === 'string') {
+              mousetrap = new Mousetrap(document.querySelector(actionObject.scoped));
+            }
           } else if (actionObject.targetElement) {
             mousetrap = new Mousetrap(actionObject.targetElement);
           }
