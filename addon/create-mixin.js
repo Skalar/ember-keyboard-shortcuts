@@ -6,7 +6,7 @@ export default function(bindEvent, unbindEvent) {
 
   return Ember.Mixin.create({
 
-    bindShortcuts: function() {
+    bindShortcuts: Ember.on(bindEvent, function() {
       var self = this;
       var shortcuts = this.get('keyboardShortcuts');
 
@@ -19,17 +19,17 @@ export default function(bindEvent, unbindEvent) {
         var mousetrap      = new Mousetrap(document.body);
         var preventDefault = true;
 
-        function invokeAction(action) {
+        function invokeAction(action, eventType) {
           var type = Ember.typeOf(action);
 
           if (type === 'string') {
             mousetrap.bind(shortcut, function(){
               self.send(action);
               return preventDefault !== true;
-            });
+            }, eventType);
           }
           else if (type === 'function') {
-            mousetrap.bind(shortcut, action.bind(self));
+            mousetrap.bind(shortcut, action.bind(self), eventType);
           }
           else {
             throw new Error('Invalid value for keyboard shortcut: ' + action);
@@ -49,7 +49,7 @@ export default function(bindEvent, unbindEvent) {
             preventDefault = false;
           }
 
-          invokeAction(actionObject.action);
+          invokeAction(actionObject.action, actionObject.eventType);
         } else {
           invokeAction(actionObject);
         }
@@ -58,13 +58,13 @@ export default function(bindEvent, unbindEvent) {
 
       });
 
-    }.on(bindEvent),
+    }),
 
-    unbindShortcuts: function() {
+    unbindShortcuts: Ember.on(unbindEvent, function() {
       this.mousetraps.forEach(
         (mousetrap) => mousetrap.reset()
       );
-    }.on(unbindEvent)
+    })
 
   });
 
