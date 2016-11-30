@@ -5,7 +5,7 @@ import Ember from 'ember';
 export default function(bindEvent, unbindEvent) {
 
   return Ember.Mixin.create({
-
+    mousetraps:[],
     bindShortcuts: Ember.on(bindEvent, function() {
       var self = this;
       var shortcuts = this.get('keyboardShortcuts');
