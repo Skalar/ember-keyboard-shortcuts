@@ -31,6 +31,9 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
+    "broccoli-funnel": "^1.2.0",
+    "broccoli-merge-trees": "^2.0.0",
+    "broccoli-stew": "^1.5.0",
     "ember-cli": "0.2.3",
     "ember-cli-app-version": "0.3.3",
     "ember-cli-content-security-policy": "0.4.0",
@@ -41,8 +44,8 @@
     "ember-cli-qunit": "0.3.10",
     "ember-cli-uglify": "1.0.1",
     "ember-data": "1.0.0-beta.16.1",
-    "ember-export-application-global": "^1.0.2",
     "ember-disable-prototype-extensions": "^1.0.0",
+    "ember-export-application-global": "^1.0.2",
     "ember-try": "0.0.4"
   },
   "description": "ember-cli addon that uses mousetrap to facilitate keyboard shortcuts",
