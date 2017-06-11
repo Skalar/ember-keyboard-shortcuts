@@ -1,7 +1,6 @@
 /* jshint node: true */
 'use strict';
 
-const resolve = require('resolve');
 var path = require('path');
 var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
