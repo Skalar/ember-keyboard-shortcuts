@@ -24,6 +24,6 @@ module.exports = {
   },
   included: function(app, parentAddon) {
     var target = (parentAddon || app);
-    target.import(app.bowerDirectory + '/mousetrap/mousetrap.js');
+    target.import('vendor/mousetrap.min.js');
   },
 };
