@@ -12,6 +12,9 @@ export default function(bindEvent, unbindEvent) {
 
       if (Ember.typeOf(shortcuts) !== 'object') { return; }
 
+      // don't ever bind any shortcuts when in fastboot
+      if (typeof FastBoot !== 'undefined') { return; }
+
       this.mousetraps = [];
 
       Object.keys(shortcuts).forEach(function(shortcut) {
