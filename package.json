@@ -1,6 +1,6 @@
 {
   "name": "ember-keyboard-shortcuts",
-  "version": "0.3.0",
+  "version": "1.0.1",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -18,6 +18,14 @@
     {
       "name": "Kirill Korolyov",
       "email": "kirill.korolyov@gmail.com"
+    },
+    {
+      "name": "Olivier Chatry",
+      "email": "olivier.chatry@gmail.com"
+    },
+    {
+      "name": "Andrew Fan",
+      "email": "andrew.fan@upsilonit.com"
     }
   ],
   "repository": {
