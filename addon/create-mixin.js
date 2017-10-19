@@ -24,7 +24,7 @@ export default function(bindEvent, unbindEvent) {
           const type = Ember.typeOf(action);
           let   callback;
           if (type === 'string') {
-            callback = function(){
+            callback = () => {
               this.send(action);
               return preventDefault !== true;
             }
