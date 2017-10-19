@@ -41,7 +41,7 @@ export default function(bindEvent, unbindEvent) {
             mousetrap = new Mousetrap(document.body);
           } else if (actionObject.scoped) {
             if (Ember.typeOf(actionObject.scoped) === 'boolean') {
-              mousetrap = new Mousetrap(self.get('element'));
+              mousetrap = new Mousetrap(this.get('element'));
             } else if (Ember.typeOf(actionObject.scoped) === 'string') {
               mousetrap = new Mousetrap(document.querySelector(actionObject.scoped));
             }
