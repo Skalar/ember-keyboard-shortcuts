@@ -38,7 +38,7 @@ export default function(bindEvent, unbindEvent) {
 
         if (Ember.typeOf(actionObject) === 'object') {
           if (actionObject.global === false) {
-            mousetrap = new Mousetrap(document.body);
+            mousetrap = new Mousetrap(document);
           } else if (actionObject.scoped) {
             if (Ember.typeOf(actionObject.scoped) === 'boolean') {
               mousetrap = new Mousetrap(this.get('element'));
@@ -47,10 +47,14 @@ export default function(bindEvent, unbindEvent) {
             }
           } else if (actionObject.targetElement) {
             mousetrap = new Mousetrap(actionObject.targetElement);
+          } else {
+            mousetrap = new Mousetrap(document.body);
           }
+
           if (actionObject.preventDefault === false) {
             preventDefault = false;
           }
+
           invokeAction(actionObject.action, actionObject.eventType);
         } else {
           mousetrap = new Mousetrap(document.body);
