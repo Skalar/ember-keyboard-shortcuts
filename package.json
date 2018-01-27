@@ -1,6 +1,6 @@
 {
   "name": "ember-keyboard-shortcuts",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "directories": {
     "doc": "doc",
     "test": "tests"
