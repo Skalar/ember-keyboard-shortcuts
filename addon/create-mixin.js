@@ -61,7 +61,7 @@ export default function(bindEvent, unbindEvent) {
           invokeAction(actionObject);
         }
         self.mousetraps.push(mousetrap);
-      });
+      }, this);
 
     }),
 
