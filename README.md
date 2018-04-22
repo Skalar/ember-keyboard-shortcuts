@@ -85,7 +85,7 @@ export default Ember.View.extend(
 * `action`: action to trigger. Can be a function or a string containing action name.
 * `global`: indicates whether events should be triggered within `input`, `textarea` and `select`. Default: `true`.
 * `scoped`: indicates that the shortcuts should only be registered for the current component/view and its children. Implies `global: true`. Default: `false`.
-* `preventDefault`: prevents the default action and stops the event from bubbling up. Applies only when the `action` is a string. Default: `false`.
+* `preventDefault`: prevents the default action and stops the event from bubbling up. Applies only when the `action` is a string. Default: `true`.
 
 ## Development
 
