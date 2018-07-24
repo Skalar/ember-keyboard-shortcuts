@@ -1,6 +1,5 @@
 'use strict';
 var path = require('path');
-var resolve = require('resolve');
 var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 var fastbootTransform = require('fastboot-transform');
@@ -29,7 +28,7 @@ module.exports = {
 
   pathBase(packageName) {
     return path.dirname(
-      resolve.sync(packageName + '/package.json', { basedir: __dirname })
+      require.resolve(packageName + '/package.json', { basedir: __dirname })
     );
   }
 };
