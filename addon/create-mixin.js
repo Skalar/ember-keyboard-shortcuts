@@ -1,6 +1,6 @@
 import Mixin from '@ember/object/mixin';
 import { on } from '@ember/object/evented';
-import { initializeKeyboardShortcuts, destroyKeyboardShortcuts } from './index';
+import { bindKeyboardShortcuts, unbindKeyboardShortcuts } from './index';
 import { deprecate } from '@ember/application/deprecations';
 
 export default function(bindEvent, unbindEvent) {
@@ -10,7 +10,7 @@ export default function(bindEvent, unbindEvent) {
 
       deprecate(
         'Using ember-keyboard-shortcuts Mixin is deprecated. ' +
-          'Please use initializeKeyboardShortcuts and destroyKeyboardShortcuts methods instead. ' +
+          'Please use bindKeyboardShortcuts and unbindKeyboardShortcuts methods instead. ' +
           'Usage of mixins will be removed in the next major release. ' +
           'Learn more about migrating at https://github.com/Skalar/ember-keyboard-shortcuts#migrating-from-mixins',
         false,
@@ -22,11 +22,11 @@ export default function(bindEvent, unbindEvent) {
     },
 
     bindShortcuts: on(bindEvent, function() {
-      initializeKeyboardShortcuts(this);
+      bindKeyboardShortcuts(this);
     }),
 
     unbindShortcuts: on(unbindEvent, function() {
-      destroyKeyboardShortcuts(this);
+      unbindKeyboardShortcuts(this);
     })
   });
 }

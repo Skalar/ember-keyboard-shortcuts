@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import {
-  initializeKeyboardShortcuts,
-  destroyKeyboardShortcuts
+  bindKeyboardShortcuts,
+  unbindKeyboardShortcuts
 } from 'ember-keyboard-shortcuts';
 
 export default Route.extend({
@@ -25,11 +25,11 @@ export default Route.extend({
 
   activate() {
     this._super(...arguments);
-    initializeKeyboardShortcuts(this);
+    bindKeyboardShortcuts(this);
   },
 
   deactivate() {
     this._super(...arguments);
-    destroyKeyboardShortcuts(this);
+    unbindKeyboardShortcuts(this);
   }
 });

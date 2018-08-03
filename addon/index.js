@@ -1,7 +1,7 @@
 /* global Mousetrap */
 import { typeOf } from '@ember/utils';
 
-export function initializeKeyboardShortcuts(context) {
+export function bindKeyboardShortcuts(context) {
   const shortcuts = context.get('keyboardShortcuts');
   if (typeOf(shortcuts) !== 'object') {
     return;
@@ -61,7 +61,7 @@ export function initializeKeyboardShortcuts(context) {
   });
 }
 
-export function destroyKeyboardShortcuts(context) {
+export function unbindKeyboardShortcuts(context) {
   const _removeEvent = (object, type, callback) => {
     if (object.removeEventListener) {
       object.removeEventListener(type, callback, false);

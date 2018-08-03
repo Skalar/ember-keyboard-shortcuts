@@ -1,8 +1,8 @@
 import Component from '@ember/component';
 import layout from '../templates/components/some-component';
 import {
-  initializeKeyboardShortcuts,
-  destroyKeyboardShortcuts
+  bindKeyboardShortcuts,
+  unbindKeyboardShortcuts
 } from 'ember-keyboard-shortcuts';
 
 export default Component.extend({
@@ -21,12 +21,12 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    initializeKeyboardShortcuts(this);
+    bindKeyboardShortcuts(this);
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    destroyKeyboardShortcuts(this);
+    unbindKeyboardShortcuts(this);
   },
 
   actions: {

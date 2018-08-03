@@ -18,8 +18,8 @@ in routes, components or controllers.
 ```javascript
 import Route from '@ember/routing/route';
 import {
-  initializeKeyboardShortcuts,
-  destroyKeyboardShortcuts
+  bindKeyboardShortcuts,
+  unbindKeyboardShortcuts
 } from 'ember-keyboard-shortcuts';
 
 export default Route.extend({
@@ -40,11 +40,11 @@ export default Route.extend({
   },
 
   activate() {
-    initializeKeyboardShortcuts(this);
+    bindKeyboardShortcuts(this);
   },
 
   deactivate() {
-    destroyKeyboardShortcuts(this);
+    unbindKeyboardShortcuts(this);
   },
 
   actions: {
@@ -53,15 +53,15 @@ export default Route.extend({
     }
   }
 });
-
 ```
 
 ### In a component
+
 ```javascript
 import Component from '@ember/component';
 import {
-  initializeKeyboardShortcuts,
-  destroyKeyboardShortcuts
+  bindKeyboardShortcuts,
+  unbindKeyboardShortcuts
 } from 'ember-keyboard-shortcuts';
 
 export default Component.extend({
@@ -75,12 +75,12 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    initializeKeyboardShortcuts(this);
+    bindKeyboardShortcuts(this);
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    destroyKeyboardShortcuts(this);
+    unbindKeyboardShortcuts(this);
   },
 
   actions: {
@@ -93,10 +93,10 @@ export default Component.extend({
 
 ## Available shortcut options
 
-* `action`: action to trigger. Can be a function or a string containing action name.
-* `global`: indicates whether events should be triggered within `input`, `textarea` and `select`. Default: `true`.
-* `scoped`: indicates that the shortcuts should only be registered for the current component/view and its children. Implies `global: true`. Default: `false`.
-* `preventDefault`: prevents the default action and stops the event from bubbling up. Applies only when the `action` is a string. Default: `true`.
+- `action`: action to trigger. Can be a function or a string containing action name.
+- `global`: indicates whether events should be triggered within `input`, `textarea` and `select`. Default: `true`.
+- `scoped`: indicates that the shortcuts should only be registered for the current component/view and its children. Implies `global: true`. Default: `false`.
+- `preventDefault`: prevents the default action and stops the event from bubbling up. Applies only when the `action` is a string. Default: `true`.
 
 ## Migrating from mixins
 
@@ -104,14 +104,13 @@ Prior versions, you could use this addon with mixins. We have deprecated that
 behavior in order to calling specific functions to setup shortcuts as well to
 destroy event listeners.
 
-
 Here is an example of not using mixins in a route.
 
 ```js
 import Route from '@ember/routing/route';
 import {
-  initializeKeyboardShortcuts,
-  destroyKeyboardShortcuts
+  bindKeyboardShortcuts,
+  unbindKeyboardShortcuts
 } from 'ember-keyboard-shortcuts';
 
 export default Ember.Route.extend({
@@ -130,11 +129,11 @@ export default Ember.Route.extend({
   },
 
   activate() {
-    initializeKeyboardShortcuts(this);
+    bindKeyboardShortcuts(this);
   },
 
   deactivate() {
-    destroyKeyboardShortcuts(this);
+    unbindKeyboardShortcuts(this);
   },
 
   actions: {
@@ -143,7 +142,6 @@ export default Ember.Route.extend({
     }
   }
 });
-
 ```
 
 In summary, if you used to use `ember-keyboard-shortcuts` in routes, you will
@@ -156,21 +154,21 @@ To migrate from a components or a view, you should use `didInsertElement` and
 
 ### Installation
 
-* `git clone` this repository
-* `npm install`
+- `git clone` this repository
+- `npm install`
 
 ### Running
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+- `ember server`
+- Visit your app at http://localhost:4200.
 
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+- `ember test`
+- `ember test --server`
 
 ### Building
 
-* `ember build`
+- `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
