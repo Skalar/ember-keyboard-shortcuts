@@ -7,6 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('no-shortcuts');
+  this.route('using-in-components');
 });
 
 export default Router;

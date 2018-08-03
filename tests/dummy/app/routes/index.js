@@ -15,7 +15,7 @@ export default Route.extend(KeyboardShortcuts, {
   },
 
   actions: {
-    myAction: function() {
+    myAction() {
       alert('key `s` was pressed');
     }
   }
