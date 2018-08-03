@@ -1,7 +1,10 @@
 import Route from '@ember/routing/route';
-import KeyboardShortcuts from 'ember-keyboard-shortcuts/mixins/route';
+import {
+  initializeKeyboardShortcuts,
+  destroyKeyboardShortcuts
+} from 'ember-keyboard-shortcuts';
 
-export default Route.extend(KeyboardShortcuts, {
+export default Route.extend({
   init() {
     this._super(...arguments);
 
@@ -18,5 +21,15 @@ export default Route.extend(KeyboardShortcuts, {
     myAction() {
       alert('key `s` was pressed');
     }
+  },
+
+  activate() {
+    this._super(...arguments);
+    initializeKeyboardShortcuts(this);
+  },
+
+  deactivate() {
+    this._super(...arguments);
+    destroyKeyboardShortcuts(this);
   }
 });
