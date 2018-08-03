@@ -1,6 +1,6 @@
 {
   "name": "ember-keyboard-shortcuts",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "ember-cli addon that uses mousetrap to facilitate keyboard shortcuts",
   "keywords": [
     "ember-addon",
