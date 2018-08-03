@@ -10,74 +10,85 @@ ember install ember-keyboard-shortcuts
 
 ## Usage
 
+We expose two functions to setup and remove keyboard shortcuts. You can use it
+in routes, components or controllers.
+
 ### In a route
 
 ```javascript
-import KeyboardShortcuts from 'ember-keyboard-shortcuts/mixins/route';
+import Route from '@ember/routing/route';
+import {
+  initializeKeyboardShortcuts,
+  destroyKeyboardShortcuts
+} from 'ember-keyboard-shortcuts';
 
-export default Ember.Route.extend(
-  KeyboardShortcuts,
-
-  {
-    actions: {
-      cancel: function() {
-        this.transitionTo('posts');
-      }
+export default Route.extend({
+  keyboardShortcuts: {
+    // trigger 'cancel' action when esc is pressed
+    esc: 'cancel',
+    'ctrl+c': {
+      action: 'myAction', // action to trigger
+      global: false, // whether to trigger inside input (default: true)
+      preventDefault: true // (default: true)rue
     },
 
-    keyboardShortcuts: {
-      // trigger 'cancel' action when esc is pressed
-      'esc' : 'cancel',
+    // trigger function when tab is pressed
+    tab() {
+      console.log('Tab pressed');
+      return false; // preventDefault
+    }
+  },
 
-      'ctrl+c' : {
-        action         : 'cancel', // action to trigger
-        global         : false,    // whether to trigger inside input (default: true)  
-        preventDefault : true     // (default: true)
-      }
+  activate() {
+    initializeKeyboardShortcuts(this);
+  },
 
-      // trigger function when tab is pressed
-      tab : function() {
-        console.log('Tab pressed');
-        return false; // preventDefault
-      }
+  deactivate() {
+    destroyKeyboardShortcuts(this);
+  },
+
+  actions: {
+    cancel() {
+      this.transitionTo('posts');
     }
   }
-);
+});
+
 ```
 
 ### In a component
 ```javascript
-import Ember from 'ember';
-import KeyboardShortcuts from 'ember-keyboard-shortcuts/mixins/component';
+import Component from '@ember/component';
+import {
+  initializeKeyboardShortcuts,
+  destroyKeyboardShortcuts
+} from 'ember-keyboard-shortcuts';
 
-export default Ember.Component.extend(
-  KeyboardShortcuts,
+export default Component.extend({
+  keyboardShortcuts: {
+    f: {
+      action: 'myAction', // action to trigger
+      global: false, // whether to trigger inside input (default: true)
+      preventDefault: true // (default: true)
+    }
+  },
 
-  {
-    keyboardShortcuts: {
-      'esc'    : 'cancel',
-      'ctrl+s' : 'save'
+  didInsertElement() {
+    this._super(...arguments);
+    initializeKeyboardShortcuts(this);
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    destroyKeyboardShortcuts(this);
+  },
+
+  actions: {
+    myAction() {
+      alert('key `f` was pressed from component some-component');
     }
   }
-);
-```
-
-
-### In a view
-```javascript
-import Ember from 'ember';
-import KeyboardShortcuts from 'ember-keyboard-shortcuts/mixins/view';
-
-export default Ember.View.extend(
-  KeyboardShortcuts,
-
-  {
-    keyboardShortcuts: {
-      'esc'    : 'cancel',
-      'ctrl+s' : 'save'
-    }
-  }
-);
+});
 ```
 
 ## Available shortcut options
@@ -87,13 +98,66 @@ export default Ember.View.extend(
 * `scoped`: indicates that the shortcuts should only be registered for the current component/view and its children. Implies `global: true`. Default: `false`.
 * `preventDefault`: prevents the default action and stops the event from bubbling up. Applies only when the `action` is a string. Default: `true`.
 
+## Migrating from mixins
+
+Prior versions, you could use this addon with mixins. We have deprecated that
+behavior in order to calling specific functions to setup shortcuts as well to
+destroy event listeners.
+
+
+Here is an example of not using mixins in a route.
+
+```js
+import Route from '@ember/routing/route';
+import {
+  initializeKeyboardShortcuts,
+  destroyKeyboardShortcuts
+} from 'ember-keyboard-shortcuts';
+
+export default Ember.Route.extend({
+  // No changes required in this block
+  keyboardShortcuts: {
+    esc: 'cancel',
+    'ctrl+c': {
+      action: 'cancel',
+      global: false,
+      preventDefault: true
+    },
+    tab() {
+      console.log('Tab pressed');
+      return false;
+    }
+  },
+
+  activate() {
+    initializeKeyboardShortcuts(this);
+  },
+
+  deactivate() {
+    destroyKeyboardShortcuts(this);
+  },
+
+  actions: {
+    cancel() {
+      this.transitionTo('posts');
+    }
+  }
+});
+
+```
+
+In summary, if you used to use `ember-keyboard-shortcuts` in routes, you will
+add a function call `activate` and `deactivate`.
+
+To migrate from a components or a view, you should use `didInsertElement` and
+`willDestroyElement` hooks.
+
 ## Development
 
 ### Installation
 
 * `git clone` this repository
 * `npm install`
-* `bower install`
 
 ### Running
 
