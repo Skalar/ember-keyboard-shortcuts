@@ -62,19 +62,8 @@ export function bindKeyboardShortcuts(context) {
 }
 
 export function unbindKeyboardShortcuts(context) {
-  const _removeEvent = (object, type, callback) => {
-    if (object.removeEventListener) {
-      object.removeEventListener(type, callback, false);
-      return;
-    }
-    object.detachEvent('on' + type, callback);
-  };
   context._mousetraps.forEach(mousetrap => {
-    // manually unbind JS event
-    _removeEvent(mousetrap.target, 'keypress', mousetrap._handleKeyEvent);
-    _removeEvent(mousetrap.target, 'keydown', mousetrap._handleKeyEvent);
-    _removeEvent(mousetrap.target, 'keyup', mousetrap._handleKeyEvent);
-    mousetrap.reset();
+    mousetrap.destroy()
   });
   context._mousetraps = [];
 }
