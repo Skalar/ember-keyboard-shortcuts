@@ -5,7 +5,7 @@ var mergeTrees = require('broccoli-merge-trees');
 var fastbootTransform = require('fastboot-transform');
 
 module.exports = {
-  name: 'ember-keyboard-shortcuts',
+  name: require('./package').name,
 
   included(app) {
     this._super.included.apply(this, arguments);
