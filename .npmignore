@@ -18,7 +18,6 @@
 /.watchmanconfig
 /bower.json
 /config/ember-try.js
-<<<<<<< HEAD
 /dist
 /tmp
 **/.gitkeep
