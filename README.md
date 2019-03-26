@@ -1,5 +1,12 @@
 # ember-keyboard-shortcuts
 
+
+## Compatibility
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
+
 ## Installation
 
 In your ember-cli project:
@@ -21,7 +28,6 @@ import {
   bindKeyboardShortcuts,
   unbindKeyboardShortcuts
 } from 'ember-keyboard-shortcuts';
-
 export default Route.extend({
   keyboardShortcuts: {
     // trigger 'cancel' action when esc is pressed
@@ -152,23 +158,6 @@ To migrate from a components or a view, you should use `didInsertElement` and
 
 ## Development
 
-### Installation
-
-- `git clone` this repository
-- `npm install`
-
-### Running
-
-- `ember server`
-- Visit your app at http://localhost:4200.
-
-### Running Tests
-
-- `ember test`
-- `ember test --server`
-
-### Building
-
-- `ember build`
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
