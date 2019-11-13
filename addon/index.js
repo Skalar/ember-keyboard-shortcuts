@@ -1,5 +1,6 @@
 /* global Mousetrap */
 import { typeOf } from '@ember/utils';
+import { A } from '@ember/array';
 
 export function bindKeyboardShortcuts(context) {
   const shortcuts = context.get('keyboardShortcuts');
@@ -69,7 +70,7 @@ export function unbindKeyboardShortcuts(context) {
     }
     object.detachEvent('on' + type, callback);
   };
-  context._mousetraps.forEach(mousetrap => {
+  A(context._mousetraps).forEach(mousetrap => {
     // manually unbind JS event
     _removeEvent(mousetrap.target, 'keypress', mousetrap._handleKeyEvent);
     _removeEvent(mousetrap.target, 'keydown', mousetrap._handleKeyEvent);
