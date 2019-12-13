@@ -1,8 +1,9 @@
 /* global Mousetrap */
 import { typeOf } from '@ember/utils';
+import { get } from "@ember/object";
 
 export function bindKeyboardShortcuts(context) {
-  const shortcuts = context.get('keyboardShortcuts');
+  const shortcuts = get(context, 'keyboardShortcuts');
   if (typeOf(shortcuts) !== 'object') {
     return;
   }
@@ -35,7 +36,7 @@ export function bindKeyboardShortcuts(context) {
         mousetrap = new Mousetrap(document);
       } else if (actionObject.scoped) {
         if (typeOf(actionObject.scoped) === 'boolean') {
-          mousetrap = new Mousetrap(context.get('element'));
+          mousetrap = new Mousetrap(get(context, 'element'));
         } else if (typeOf(actionObject.scoped) === 'string') {
           mousetrap = new Mousetrap(
             document.querySelector(actionObject.scoped)
