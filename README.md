@@ -104,6 +104,24 @@ export default Component.extend({
 - `scoped`: indicates that the shortcuts should only be registered for the current component/view and its children. Implies `global: true`. Default: `false`.
 - `preventDefault`: prevents the default action and stops the event from bubbling up. Applies only when the `action` is a string. Default: `true`.
 
+## Testing
+
+You will want to use the [triggerKeyEvent](https://github.com/emberjs/ember-test-helpers/blob/master/API.md#triggerkeyevent) helper from [ember-test-helpers](https://github.com/emberjs/ember-test-helpers).  We listen for the `keydown` event by default. You must always scope the trigger in your tests to at least a child element of the scoping option you pass.
+
+```javascript
+// Setting `global: false,`
+await triggerKeyEvent(document, 'keydown', <keycode/name>);
+
+// Setting `scoped: true,`
+await triggerKeyEvent(featureUnderTest.element, 'keydown', <keycode/name>);
+
+// Passing `targetElement: <element>,`
+await triggerKeyEvent(<targetElement>, 'keydown', <keycode/name>);
+
+// Default behavior
+await triggerKeyEvent(document.body, 'keydown', <keycode/name>);
+```
+
 ## Migrating from mixins
 
 Prior versions, you could use this addon with mixins. We have deprecated that
