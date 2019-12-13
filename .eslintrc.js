@@ -1,8 +1,11 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 2017,
-    sourceType: 'module'
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
   },
   plugins: [
     'ember'
@@ -15,6 +18,8 @@ module.exports = {
     browser: true
   },
   rules: {
+    'ember/no-new-mixins': 'off',
+    'ember/no-jquery': 'error'
   },
   overrides: [
     // node files
@@ -27,7 +32,8 @@ module.exports = {
         'testem.js',
         'blueprints/*/index.js',
         'config/**/*.js',
-        'tests/dummy/config/**/*.js'
+        'tests/dummy/config/**/*.js',
+        '.prettierrc.js'
       ],
       excludedFiles: [
         'addon/**',
@@ -36,8 +42,7 @@ module.exports = {
         'tests/dummy/app/**'
       ],
       parserOptions: {
-        sourceType: 'script',
-        ecmaVersion: 2015
+        sourceType: 'script'
       },
       env: {
         browser: false,
