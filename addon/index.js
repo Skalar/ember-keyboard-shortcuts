@@ -70,7 +70,7 @@ export function unbindKeyboardShortcuts(context) {
     }
     object.detachEvent('on' + type, callback);
   };
-  context._mousetraps.forEach(mousetrap => {
+  Array.isArray(context._mousetraps) && context._mousetraps.forEach(mousetrap => {
     // manually unbind JS event
     _removeEvent(mousetrap.target, 'keypress', mousetrap._handleKeyEvent);
     _removeEvent(mousetrap.target, 'keydown', mousetrap._handleKeyEvent);
