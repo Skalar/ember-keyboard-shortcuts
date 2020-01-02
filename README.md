@@ -35,7 +35,7 @@ export default Route.extend({
     'ctrl+c': {
       action: 'myAction', // action to trigger
       global: false, // whether to trigger inside input (default: true)
-      preventDefault: true // (default: true)rue
+      preventDefault: true // (default: true)
     },
 
     // trigger function when tab is pressed
